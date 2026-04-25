@@ -138,3 +138,11 @@ Terraformの user_data を使用し、EC2起動時にWebサーバーのインス
 
 AWS学習の一環として作成したポートフォリオです。  
 実務レベルの構成を意識しながら、継続的に改善しています。
+
+## 📷 動作確認
+
+![動作確認](./images/result.png)
+
+## 📷 Auto Scaling
+
+![AutoScaling](./images/asg.png)
