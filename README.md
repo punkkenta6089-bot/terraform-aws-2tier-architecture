@@ -154,6 +154,9 @@ Terraformの user_data を使用し、EC2起動時にWebサーバーのインス
 
 ![AutoScaling](./images/asg.png)
 
+## 📷 RDS
+
+![RDS](./images/rds.png)
 ---
 
 ## 🙌 補足
