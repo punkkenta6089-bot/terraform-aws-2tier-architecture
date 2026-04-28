@@ -114,7 +114,7 @@ aws_instance を削除後、outputs.tf に参照が残っていた
 
 ## 🎯 今後の課題
 
-- RDS（データベース）の追加
+- RDSへの接続確認
 - HTTPS化（ACM + ALB）
 - Route53による独自ドメイン対応
 - CloudFrontによるCDN構成
@@ -134,7 +134,7 @@ aws_instance を削除後、outputs.tf に参照が残っていた
   - EC2
   - ALB
   - Auto Scaling
-
+  - RDS（MySQL）
 ---
 
 ## 🌐 Webサーバー動作確認
