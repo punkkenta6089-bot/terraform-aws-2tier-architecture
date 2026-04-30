@@ -183,9 +183,6 @@ Terraformの user_data を使用し、EC2起動時にWebサーバーのインス
 
 ![acm](./images/acm.png)
 
-## 📷 ALB
-
-![alb](./images/alb.png)
 
 ## 📷 Auto Scaling
 
