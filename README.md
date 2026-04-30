@@ -173,7 +173,19 @@ Terraformの user_data を使用し、EC2起動時にWebサーバーのインス
 
 ## 📷 動作確認
 
-![動作確認](./images/result.png)
+![動作確認](./images/result2.png)
+
+## 📷 Route53
+
+![route53](./images/route53.png)
+
+## 📷 ACM
+
+![acm](./images/acm.png)
+
+## 📷 ALB
+
+![alb](./images/alb.png)
 
 ## 📷 Auto Scaling
 
