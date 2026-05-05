@@ -1,5 +1,5 @@
 # 📘 Terraform AWS 2層構成ポートフォリオ（Auto Scaling + HTTPS対応）
-テスト
+
 ## 📌 概要
 Terraformを使用して、AWS上に実務を意識した2層構成のインフラを構築しました。
 
