@@ -1,4 +1,4 @@
-# 📘 Terraform AWS 2層構成ポートフォリオ（Auto Scaling + HTTPS対応）
+# 📘 Terraform AWS 2層構成ポートフォリオ（Auto Scaling + HTTPS + 監視 + CI）
 
 ## 📌 概要
 Terraformを使用して、AWS上に実務を意識した2層構成のインフラを構築しました。
@@ -7,6 +7,9 @@ EC2をPrivate Subnetに配置し、ALB経由でのみアクセス可能とする
 さらにAuto Scalingを導入し、負荷に応じたスケーラビリティを実現しました。
 
 また、RDS（MySQL）をPrivate Subnetに配置し、EC2からのみ接続可能な構成とすることで、データベースのセキュリティも考慮しています。
+
+加えて、CloudWatchによる監視設定およびGitHub ActionsによるCIを導入し、  
+運用・品質管理まで含めた構成としています。
 
 Terraformによるインフラ管理（IaC）の理解を目的としています。
 
@@ -33,7 +36,8 @@ ALBにHTTPSリスナーを設定し、HTTPからHTTPSへのリダイレクトを
 - ALB（Application Load Balancer）
 - Auto Scaling Group
 - EC2（自動生成）
-
+- RDS（MySQL）
+- CloudWatch Alarm（監視）
 
 ※EC2からの外向き通信はNAT Gateway経由で実施
 
@@ -45,6 +49,10 @@ ALBにHTTPSリスナーを設定し、HTTPからHTTPSへのリダイレクトを
 セキュリティと可用性を意識した構成としました。
 
 また、Auto Scalingを導入することで、負荷に応じたスケールを実現しています。
+
+さらに、CloudWatchにより異常を検知できるようにし、  
+GitHub Actionsによりコード品質を担保することで、  
+運用を見据えた設計としています。
 
 ---
 
@@ -65,6 +73,15 @@ ALBにHTTPSリスナーを設定し、HTTPからHTTPSへのリダイレクトを
 - ALBによるHTTPS通信の実装
 - Route53による独自ドメイン設定
 
+### 🔧 追加実装
+
+- GitHub ActionsによるCI導入
+  - terraform fmt（フォーマットチェック）
+  - terraform validate（構文チェック）
+
+- CloudWatch Alarmの構築
+  - ALBの5xxエラーを監視
+
 ---
 
 ## 💡 工夫した点
@@ -73,6 +90,8 @@ ALBにHTTPSリスナーを設定し、HTTPからHTTPSへのリダイレクトを
 - ALB経由のみアクセス可能とし、セキュリティを強化
 - HTTPS通信を実装し、実務に近い公開構成を再現
 - Terraformによりインフラの再現性と管理性を向上
+- CloudWatchにより異常検知を可能にし、運用を意識
+- GitHub Actionsによりコード品質の自動チェックを実現
 
 ---
 
@@ -127,6 +146,8 @@ aws_instance を削除後、outputs.tf に参照が残っていた
 - Security Group設計の重要性
 - HTTPS通信の重要性と実装方法（ACM + ALB）
 - DNS（Route53）の仕組み
+- CIによりコード品質を自動で担保できる
+- CloudWatchにより障害検知が可能になる
 
 ---
 
@@ -134,13 +155,14 @@ aws_instance を削除後、outputs.tf に参照が残っていた
 
 - CloudFrontによるCDN構成
 - WAFによるセキュリティ強化
-- CI/CD（GitHub Actions）による自動デプロイ
+- SNS通知によるアラート連携
 
 ---
 
 ## 🛠️ 使用技術
 
 - Terraform
+- GitHub Actions
 - AWS
   - VPC
   - Subnet（Public / Private）
@@ -154,6 +176,7 @@ aws_instance を削除後、outputs.tf に参照が残っていた
   - RDS（MySQL）
   - Route53
   - ACM
+  - CloudWatch
 
 ---
 
@@ -182,7 +205,6 @@ Terraformの user_data を使用し、EC2起動時にWebサーバーのインス
 ## 📷 ACM
 
 ![acm](./images/acm.png)
-
 
 ## 📷 Auto Scaling
 
